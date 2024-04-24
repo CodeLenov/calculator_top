@@ -1,0 +1,25 @@
+* {
+	box-sizing: border-box;
+}
+
+#container {
+	width: 40%;
+	height: auto;
+	margin: auto;
+	border: 1px solid #ccc;
+}
+
+#output, #buttons {
+	flex: ;
+}
+
+#buttons {
+	width: ;
+	height: ;
+}
+
+.rowDiv {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+}
