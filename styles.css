@@ -5,7 +5,7 @@
 }
 
 #container {
-	width: 50vmin; /* for the different screens */
+	width: 60vmin; /* for the different screens */
 	height: auto;
 	margin: auto;
 	border: 1px solid #aaa;
