@@ -10,7 +10,7 @@
 	margin: auto;
 	border: 1px solid #aaa;
 	border-radius: 2% 2% 0 0;
-	transform: translateY(50%);
+	transform: translateY(50%); /* center vertically */
 }
 
 #divOutput {
@@ -35,6 +35,11 @@
 	width: calc(100% / 6);
 	border: 1px solid #aaa;
 	border-radius: 12%;
+}
+
+.buttons:active {
+	transform: scale(0.9);
+	box-shadow: 3px 2px 22px 1px #aaa inset;
 }
 
 .operators {
