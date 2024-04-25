@@ -1,32 +1,39 @@
 * {
 	box-sizing: border-box;
+	text-align: center;
+	justify-content: right;
 }
 
 #container {
-	width: 30%;
+	width: 50vmin;
 	height: auto;
 	margin: auto;
-	border: 1px solid #ccc;
+	border: 1px solid #aaa;
+	border-radius: 2% 2% 0 0;
 }
 
-#divOutput, #divButtons {
-	flex: ;
+#divOutput {
+	height: 5em;
+	border: 0.5em solid #ddd;
+	border-radius: 2%;
 }
 
 #divButtons {
-	width: %;
-	height: ;
+	border: 0.5em solid #ddd;
 }
 
 .divRows {
+	background-color: #ddd;
+	height: 2em;
 	display: flex;
 	flex-flow: row wrap;
-	justify-content: center;
 }
 
 .buttons {
 	background-color: #ddd;
 	width: calc(100% / 6);
+	border: 1px solid #aaa;
+	border-radius: 12%;
 }
 
 .operators {
@@ -34,13 +41,19 @@
 	color: #fff;
 }
 
+#divUndoClear {
+	
+}
+
 #undo {
 	background-color: pink;
+	justify-content: right;
 }
 
 #clear {
 	background-color: red;
 	color: #fff;
+	justify-content: right;
 }
 
 #equals {
