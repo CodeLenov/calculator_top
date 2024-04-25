@@ -1,11 +1,12 @@
 * {
+	font-family: Arial, sans-serif;
 	box-sizing: border-box;
 	text-align: center;
 	justify-content: right;
 }
 
 #container {
-	width: 60vmin; /* for the different screens */
+	width: 60vmin; /* vmin - for the different screens */
 	height: auto;
 	margin: auto;
 	border: 1px solid #aaa;
@@ -14,18 +15,22 @@
 }
 
 #divOutput {
-	height: 5em;
-	border: 0.5em solid #ddd;
+	color: #222;
+	font-size: 2em;
+	line-height: 2em;
+	text-align: right;
+	height: 12vmin; /* vmin - for the different screens */
+	border: 1.5vmin solid #ddd; /* vmin - for the different screens */
 	border-radius: 2%;
 }
 
 #divButtons {
-	border: 0.5em solid #ddd;
+	border: 1.5vmin solid #ddd; /* vmin - for the different screens */
 }
 
 .divRows {
 	background-color: #ddd;
-	height: 2em;
+	height: 5vmin; /* vmin - for the different screens */
 	display: flex;
 	flex-flow: row wrap;
 }
