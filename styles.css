@@ -3,23 +3,47 @@
 }
 
 #container {
-	width: 40%;
+	width: 30%;
 	height: auto;
 	margin: auto;
 	border: 1px solid #ccc;
 }
 
-#output, #buttons {
+#divOutput, #divButtons {
 	flex: ;
 }
 
-#buttons {
-	width: ;
+#divButtons {
+	width: %;
 	height: ;
 }
 
-.rowDiv {
+.divRows {
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: center;
+}
+
+.buttons {
+	background-color: #ddd;
+	width: calc(100% / 6);
+}
+
+.operators {
+	background-color: #333;
+	color: #fff;
+}
+
+#undo {
+	background-color: pink;
+}
+
+#clear {
+	background-color: red;
+	color: #fff;
+}
+
+#equals {
+	background-color: #0000cd;
+	color: #fff;
 }
