@@ -5,11 +5,12 @@
 }
 
 #container {
-	width: 50vmin;
+	width: 50vmin; /* for the different screens */
 	height: auto;
 	margin: auto;
 	border: 1px solid #aaa;
 	border-radius: 2% 2% 0 0;
+	transform: translateY(50%);
 }
 
 #divOutput {
@@ -41,22 +42,17 @@
 	color: #fff;
 }
 
-#divUndoClear {
-	
-}
-
 #undo {
 	background-color: pink;
-	justify-content: right;
 }
 
 #clear {
 	background-color: red;
 	color: #fff;
-	justify-content: right;
 }
 
 #equals {
-	background-color: #0000cd;
+	background-color: #369;
 	color: #fff;
+	width: calc(100% / 3);
 }
