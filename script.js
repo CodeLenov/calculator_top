@@ -33,7 +33,7 @@ let divOutput = document.querySelector("#divOutput");
 
 let inputAllString = ""; // all inputs (e.g. numbers and operators) are the string
 let inputArray = []; // for 'inputAllString' array
-let inputDigits = 0; // for calculate digits on screen (divOutput)
+
 const INPUTLENGTH = 16;
 let inputFirst = "";
 let inputSecond = "";
@@ -50,9 +50,22 @@ function getInput() {
 
 	buttons.forEach(function(b) {
 		b.addEventListener('click', () => {
-			inputAllString += b.innerHTML;
-			divOutput.innerHTML = inputAllString; // clean for new
+			if (/pi/.test(b.value) === true) {
+				b.innerHTML = `\u03C0`;
+				b.value = Math.PI;
+				inputAllString += b.value;
+				divOutput.innerHTML += b.innerHTML;
+			} else if (/tau/.test(b.value) === true) {
+				b.innerHTML = `\u03C4`;
+				b.value = Math.PI * 2;
+				inputAllString += b.value;
+				divOutput.innerHTML += b.innerHTML;
+			}
+			else {
+				inputAllString += b.value;
+				divOutput.innerHTML = inputAllString; // clean for new
 					console.log(inputAllString);
+			}
 		});
 	});
 
@@ -60,6 +73,9 @@ function getInput() {
 
 		inputAllString = inputAllString.slice(0, -1);
 
+		// use regex for recognize operators
+		// split array with the operators for get first input number and second input number
+		// and change string type (elements of array) on integer type for calculating
 		if (/\+/.test(inputAllString) === true) {
 			inputArray = inputAllString.split('+');
 			result = +inputArray[0] + +inputArray[1];
