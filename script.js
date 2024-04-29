@@ -51,16 +51,19 @@ function getInput() {
 	buttons.forEach(function(b) {
 		b.addEventListener('click', () => {
 			if (/pi/.test(b.value) === true) { // 'pi' constant
+				divOutput.style.color = `#555`; // change color for input
 				b.innerHTML = `\u03C0`;
 				b.value = Math.PI;
 				inputAllString += b.value;
 				divOutput.innerHTML += b.innerHTML;
 			} else if (/tau/.test(b.value) === true) { // 'tau' constant
+				divOutput.style.color = `#555`; // change color for input
 				b.innerHTML = `\u03C4`;
 				b.value = Math.PI * 2;
 				inputAllString += b.value;
 				divOutput.innerHTML += b.innerHTML;
 			} else {
+				divOutput.style.color = `#555`; // change color for input
 				inputAllString += b.value;
 				divOutput.innerHTML = inputAllString; // clean for new
 					console.log(inputAllString);
@@ -93,7 +96,8 @@ function getInput() {
 		}
 				console.log(inputAllString);
 				console.log(inputArray);
-				console.log(result);		
+				console.log(result);	
+		divOutput.style.color = `#222`; // change color for result
 		divOutput.innerHTML = result;
 		inputAllString = ""; // clean for new
 		inputArray = []; // clean for new
