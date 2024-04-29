@@ -50,18 +50,17 @@ function getInput() {
 
 	buttons.forEach(function(b) {
 		b.addEventListener('click', () => {
-			if (/pi/.test(b.value) === true) {
+			if (/pi/.test(b.value) === true) { // 'pi' constant
 				b.innerHTML = `\u03C0`;
 				b.value = Math.PI;
 				inputAllString += b.value;
 				divOutput.innerHTML += b.innerHTML;
-			} else if (/tau/.test(b.value) === true) {
+			} else if (/tau/.test(b.value) === true) { // 'tau' constant
 				b.innerHTML = `\u03C4`;
 				b.value = Math.PI * 2;
 				inputAllString += b.value;
 				divOutput.innerHTML += b.innerHTML;
-			}
-			else {
+			} else {
 				inputAllString += b.value;
 				divOutput.innerHTML = inputAllString; // clean for new
 					console.log(inputAllString);
@@ -88,6 +87,9 @@ function getInput() {
 		} else if (/\//.test(inputAllString) === true) {
 			inputArray = inputAllString.split('/');
 			result = +inputArray[0] / +inputArray[1];
+		} else if (/exp/.test(inputAllString) === true) {
+			inputArray = inputAllString.split('exp');
+			result = Math.pow(+inputArray[0], +inputArray[1]);
 		}
 				console.log(inputAllString);
 				console.log(inputArray);
