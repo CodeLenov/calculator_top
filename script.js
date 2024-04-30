@@ -52,14 +52,14 @@ function getInput() {
 		b.addEventListener('click', () => {
 			if (/pi/.test(b.value) === true) { // 'pi' constant
 				divOutput.style.color = `#555`; // change color for input
-				b.innerHTML = `\u03C0`;
-				b.value = Math.PI;
+				b.innerHTML = `\u03C0`; // regex and unicode for javascript
+				b.value = Math.PI; // method '.value' because need .innerHTML with ONLY ONE symbol
 				inputAllString += b.value;
 				divOutput.innerHTML += b.innerHTML;
 			} else if (/tau/.test(b.value) === true) { // 'tau' constant
 				divOutput.style.color = `#555`; // change color for input
-				b.innerHTML = `\u03C4`;
-				b.value = Math.PI * 2;
+				b.innerHTML = `\u03C4`; // regex and unicode for javascript
+				b.value = Math.PI * 2; // method '.value' because need .innerHTML with ONLY ONE symbol
 				inputAllString += b.value;
 				divOutput.innerHTML += b.innerHTML;
 			} else {
@@ -90,6 +90,9 @@ function getInput() {
 		} else if (/\//.test(inputAllString) === true) {
 			inputArray = inputAllString.split('/');
 			result = +inputArray[0] / +inputArray[1];
+		} else if (/\u221A/.test(inputAllString) === true) {
+			inputArray = inputAllString.split('\u221A');
+			result = Math.sqrt(+inputArray[1]);
 		} else if (/\^2/.test(inputAllString) === true) {
 			inputArray = inputAllString.split('^2');
 			result = +inputArray[0] * +inputArray[0];
