@@ -50,28 +50,19 @@ function getInput() {
 
 	buttons.forEach(function(b) {
 		b.addEventListener('click', () => {
-			if (/pi/.test(b.value) === true) { // 'pi' constant
-				divOutput.style.color = `#555`; // change color for input
-				b.innerHTML = `\u03C0`; // regex and unicode for javascript
-				b.value = Math.PI; // method '.value' because need .innerHTML with ONLY ONE symbol
-				inputAllString += b.value;
-				divOutput.innerHTML += b.innerHTML;
-			} else if (/tau/.test(b.value) === true) { // 'tau' constant
-				divOutput.style.color = `#555`; // change color for input
-				b.innerHTML = `\u03C4`; // regex and unicode for javascript
-				b.value = Math.PI * 2; // method '.value' because need .innerHTML with ONLY ONE symbol
-				inputAllString += b.value;
-				divOutput.innerHTML += b.innerHTML;
-			} else {
-				divOutput.style.color = `#555`; // change color for input
-				inputAllString += b.value;
-				divOutput.innerHTML = inputAllString; // clean for new
+			divOutput.style.color = `#555`; // change color for input
+			inputAllString += b.value;
+			divOutput.innerHTML = inputAllString; // clean for new
 					console.log(inputAllString);
-			}
 		});
 	});
 
 	equals.addEventListener('click', () => {
+
+		inputAllString = inputAllString.replace(`\u03C0`, `${Math.PI}`); // 'pi' button
+		inputAllString = inputAllString.replace(`\u03C4`, `${Math.PI * 2}`); // 'tau' button
+		console.log(inputAllString);
+		
 
 		inputAllString = inputAllString.slice(0, -1);
 
@@ -90,7 +81,7 @@ function getInput() {
 		} else if (/\//.test(inputAllString) === true) {
 			inputArray = inputAllString.split('/');
 			result = +inputArray[0] / +inputArray[1];
-		} else if (/\u221A/.test(inputAllString) === true) {
+		} else if (/\u221A/.test(inputAllString) === true) { // unicode for JavaScript, not HTML
 			inputArray = inputAllString.split('\u221A');
 			result = Math.sqrt(+inputArray[1]);
 		} else if (/\^2/.test(inputAllString) === true) {
@@ -107,6 +98,7 @@ function getInput() {
 		divOutput.innerHTML = result;
 		inputAllString = ""; // clean for new
 		inputArray = []; // clean for new
+
 	});
 
 }
