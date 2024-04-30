@@ -90,6 +90,9 @@ function getInput() {
 		} else if (/\//.test(inputAllString) === true) {
 			inputArray = inputAllString.split('/');
 			result = +inputArray[0] / +inputArray[1];
+		} else if (/\^2/.test(inputAllString) === true) {
+			inputArray = inputAllString.split('^2');
+			result = +inputArray[0] * +inputArray[0];
 		} else if (/\^/.test(inputAllString) === true) {
 			inputArray = inputAllString.split('^');
 			result = Math.pow(+inputArray[0], +inputArray[1]);
