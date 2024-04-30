@@ -61,10 +61,8 @@ function getInput() {
 
 		inputAllString = inputAllString.replace(`\u03C0`, `${Math.PI}`); // 'pi' button
 		inputAllString = inputAllString.replace(`\u03C4`, `${Math.PI * 2}`); // 'tau' button
-		console.log(inputAllString);
-		
 
-		inputAllString = inputAllString.slice(0, -1);
+		inputAllString = inputAllString.slice(0, -1); // for remove equals sign
 
 		// use regex for recognize operators
 		// split array with the operators for get first input number and second input number
@@ -87,6 +85,9 @@ function getInput() {
 		} else if (/\^2/.test(inputAllString) === true) {
 			inputArray = inputAllString.split('^2');
 			result = +inputArray[0] * +inputArray[0];
+		} else if (/m/.test(inputAllString) === true) {
+			inputArray = inputAllString.split('m');
+			result = +inputArray[0] % +inputArray[1];
 		} else if (/\^/.test(inputAllString) === true) {
 			inputArray = inputAllString.split('^');
 			result = Math.pow(+inputArray[0], +inputArray[1]);
