@@ -47,10 +47,21 @@ function getInput() {
 	/*clear.addEventListener('click', () => {
 		divOutput.innerHTML = "";
 	});*/
-
+undo.addEventListener('click', () => {
+				undo.value = "";
+				inputAllString = inputAllString.slice(0, -1);
+				divOutput.innerHTML = inputAllString;
+				console.log(99, inputAllString);
+			})
 	buttons.forEach(function(b) {
 
 		b.addEventListener('click', () => {
+
+			
+			/*if (/undo/.test(b.value) === true) {
+				b.value = "";
+				inputAllString = inputAllString.slice(0, -1);
+			}*/
 
 			if (/clear/.test(b.value) === true) {
 				divOutput.innerHTML = "";
@@ -62,6 +73,9 @@ function getInput() {
 			inputAllString += b.value;
 			divOutput.innerHTML = inputAllString; // clean for new
 					console.log(inputAllString);
+
+
+
 
 		});
 
