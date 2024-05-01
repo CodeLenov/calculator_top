@@ -46,15 +46,25 @@ function getInput() {
 
 	/*clear.addEventListener('click', () => {
 		divOutput.innerHTML = "";
-	}); */
+	});*/
 
 	buttons.forEach(function(b) {
+
 		b.addEventListener('click', () => {
+
+			if (/clear/.test(b.value) === true) {
+				divOutput.innerHTML = "";
+				b.value = "";
+				inputAllString = "";
+			}
+
 			divOutput.style.color = `#555`; // change color for input
 			inputAllString += b.value;
 			divOutput.innerHTML = inputAllString; // clean for new
 					console.log(inputAllString);
+
 		});
+
 	});
 
 	equals.addEventListener('click', () => {
@@ -62,7 +72,6 @@ function getInput() {
 		inputAllString = inputAllString.replace(`\u03C0`, `${Math.PI}`); // 'pi' button
 		inputAllString = inputAllString.replace(`\u03C4`, `${Math.PI * 2}`); // 'tau' button
 
-		
 		if (/\%/.test(inputAllString) === true) {
 
 			let percentAllString = inputAllString.slice(0, -2); // for remove percent sign (!!!really equals sign) from input string
@@ -117,7 +126,6 @@ function doCalculating() {
 		divOutput.style.color = `#222`; // change color for result
 		divOutput.innerHTML = result;
 		inputAllString = ""; // clean for new
-		inputArray = []; // clean for new
 
 	});
 
