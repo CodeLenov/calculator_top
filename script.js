@@ -44,9 +44,9 @@ getInput(); // program initialization
 
 function getInput() {
 
-	clear.addEventListener('click', () => {
+	/*clear.addEventListener('click', () => {
 		divOutput.innerHTML = "";
-	}); 
+	}); */
 
 	buttons.forEach(function(b) {
 		b.addEventListener('click', () => {
@@ -62,8 +62,24 @@ function getInput() {
 		inputAllString = inputAllString.replace(`\u03C0`, `${Math.PI}`); // 'pi' button
 		inputAllString = inputAllString.replace(`\u03C4`, `${Math.PI * 2}`); // 'tau' button
 
-		inputAllString = inputAllString.slice(0, -1); // for remove equals sign
+		
+		if (/\%/.test(inputAllString) === true) {
 
+			let percentAllString = inputAllString.slice(0, -2); // for remove percent sign (!!!really equals sign) from input string
+			let percentArray = percentAllString.split(/[^0-9]/);
+			let percentSecond = +percentArray[0] * (+percentArray[1] / 100);
+
+			inputAllString = inputAllString.replace(`${percentArray[1]}`, `${percentSecond}`);
+			inputAllString = inputAllString.slice(0, -1); // for remove equals sign from input string
+
+		}
+
+inputAllString = inputAllString.slice(0, -1); // for remove equals sign from input string
+
+doCalculating();
+
+
+function doCalculating() {
 		// use regex for recognize operators
 		// split array with the operators for get first input number and second input number
 		// and change string type (elements of array) on integer type for calculating
@@ -92,7 +108,10 @@ function getInput() {
 			inputArray = inputAllString.split('^');
 			result = Math.pow(+inputArray[0], +inputArray[1]);
 		}
-				console.log(inputAllString);
+
+}
+
+		console.log(inputAllString);
 				console.log(inputArray);
 				console.log(result);	
 		divOutput.style.color = `#222`; // change color for result
