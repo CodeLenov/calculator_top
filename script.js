@@ -44,30 +44,26 @@ getInput(); // program initialization
 
 function getInput() {
 
-	/*clear.addEventListener('click', () => {
-		divOutput.innerHTML = "";
-	});*/
-undo.addEventListener('click', () => {
-				undo.value = "";
-				inputAllString = inputAllString.slice(0, -1);
-				divOutput.innerHTML = inputAllString;
-				console.log(99, inputAllString);
-			})
+	undo.addEventListener('click', () => {
+		undo.value = "";
+		inputAllString = inputAllString.slice(0, -1);
+		divOutput.innerHTML = inputAllString;
+	});
+
+	clear.addEventListener('click', () => {
+		clear.value = "";
+		inputAllString = "";
+	});
+
 	buttons.forEach(function(b) {
 
 		b.addEventListener('click', () => {
 
-			
-			/*if (/undo/.test(b.value) === true) {
-				b.value = "";
-				inputAllString = inputAllString.slice(0, -1);
-			}*/
-
-			if (/clear/.test(b.value) === true) {
+			/*if (/clear/.test(b.value) === true) {
 				divOutput.innerHTML = "";
 				b.value = "";
 				inputAllString = "";
-			}
+			}*/
 
 			divOutput.style.color = `#555`; // change color for input
 			inputAllString += b.value;
