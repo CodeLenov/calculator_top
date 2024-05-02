@@ -15,19 +15,21 @@ const INPUTLENGTH = 16;
 getInput(); // program initialization
 
 function getInput() {
-
-
+undoInput();
+clearInput();
+	function undoInput() {
 	undo.addEventListener('click', () => {
 		undo.value = "";
 		inputAll = inputAll.slice(0, -1);
-		divOutput.innerHTML = inputAll;
+		/*divOutput.innerHTML = inputAll;*/
 	});
-
+}
+function clearInput() {
 	clear.addEventListener('click', () => {
 		clear.value = "";
 		inputAll = "";
 	});
-
+}
 document.addEventListener('keydown', (b) => {
 	if (b.key == '0') {b.value = '0'}
 	else if (b.key == '1') {b.value = '1'}
@@ -51,7 +53,7 @@ document.addEventListener('keydown', (b) => {
 	else if (b.key == 's') {b.value = '\u2036'}
 	else if (b.key == 'm') {b.value = 'm'}
 	else if (b.key == 'e') {b.value = '^'}
-	else if (b.key == '2') {b.value = '2'}
+	else if (b.key == 'Backspace') {b.value = ''; undoInput();}
 	else if (b.key == '2') {b.value = '2'}
 	else if (b.key == '2') {b.value = '2'}
 	else {b.value = ''}
