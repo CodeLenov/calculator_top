@@ -129,10 +129,10 @@ console.log(60, inputAll);
 		}
 console.log(000, result);
 		divOutput.style.color = `#222`; // change color for result
-		if (result.length < 16) {
+		if ( (inputArray[0] < 16) || (inputArray[1] < 16) ) {
 		divOutput.innerHTML = result;
 	} else {
-		divOutput.innerHTML = 'so much long...'
+		divOutput.innerHTML = 'so much long...>16'
 		inputAll = ""; // clean for new input
 	}
 
