@@ -45,12 +45,12 @@ document.addEventListener('keydown', (b) => {
 	else if (b.key == '-') {b.value = '-'}
 	else if (b.key == '*') {b.value = '*'}
 	else if (b.key == '/') {b.value = '/'}
+	else if (b.key == 'p') {b.value = '\u03C0'}
+	else if (b.key == 't') {b.value = '\u03C4'}
 	else if (b.key == 'r') {b.value = '\u221A'}
-	else if (b.key == 's') {b.value = '2'}
-	else if (b.key == '2') {b.value = '2'}
-	else if (b.key == '2') {b.value = '2'}
-	else if (b.key == '2') {b.value = '2'}
-	else if (b.key == '2') {b.value = '2'}
+	else if (b.key == 's') {b.value = '\u2036'}
+	else if (b.key == 'm') {b.value = 'm'}
+	else if (b.key == 'e') {b.value = '^'}
 	else if (b.key == '2') {b.value = '2'}
 	else if (b.key == '2') {b.value = '2'}
 	else if (b.key == '2') {b.value = '2'}

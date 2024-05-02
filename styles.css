@@ -54,6 +54,10 @@
 	color: #fff;
 }
 
+.keys {
+	color: #777;
+}
+
 #undo {
 	background-color: pink;
 }
