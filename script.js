@@ -16,7 +16,6 @@ getInput(); // program initialization
 
 function getInput() {
 
-			
 
 	undo.addEventListener('click', () => {
 		undo.value = "";
@@ -29,21 +28,56 @@ function getInput() {
 		inputAll = "";
 	});
 
+document.addEventListener('keydown', (b) => {
+	if (b.key == '0') {b.value = '0'}
+	else if (b.key == '1') {b.value = '1'}
+	else if (b.key == '2') {b.value = '2'}
+	else if (b.key == '3') {b.value = '3'}
+	else if (b.key == '4') {b.value = '4'}
+	else if (b.key == '5') {b.value = '5'}
+	else if (b.key == '6') {b.value = '6'}
+	else if (b.key == '7') {b.value = '7'}
+	else if (b.key == '8') {b.value = '8'}
+	else if (b.key == '9') {b.value = '9'}
+	else if (b.key == '.') {b.value = '.'}
+	else if (b.key == '%') {b.value = '%'}
+	else if (b.key == '+') {b.value = '+'}
+	else if (b.key == '-') {b.value = '-'}
+	else if (b.key == '*') {b.value = '*'}
+	else if (b.key == '/') {b.value = '/'}
+	else if (b.key == 'r') {b.value = '\u221A'}
+	else if (b.key == 's') {b.value = '2'}
+	else if (b.key == '2') {b.value = '2'}
+	else if (b.key == '2') {b.value = '2'}
+	else if (b.key == '2') {b.value = '2'}
+	else if (b.key == '2') {b.value = '2'}
+	else if (b.key == '2') {b.value = '2'}
+	else if (b.key == '2') {b.value = '2'}
+	else if (b.key == '2') {b.value = '2'}
+	else {b.value = ''}
+
+
+			inputAll += b.value;
+	printInput();			
+
+});
+
 	buttons.forEach(function(b) {
 
 		b.addEventListener('click', () => {
-
-			divOutput.style.color = `#555`; // change color for input
-			inputAll += b.value;
-divOutput.innerHTML = inputAll.slice(-16); // restrict maximal length divOutput
-			
-/*inputAll = "" // clean for new input*/
-		
-
+inputAll += b.value;
+			printInput();
 		console.log(33, inputAll);
 		});
 
 	});
+
+	function printInput() {
+	divOutput.style.color = `#555`; // change color for input
+			
+			divOutput.innerHTML = inputAll.slice(-16); // restrict maximal length divOutput
+}
+
 
 	equals.addEventListener('click', () => {
 console.log(inputAll);
@@ -81,8 +115,8 @@ console.log(inputAll);
 		} else if (/\u221A/.test(inputAll) === true) { // unicode for JavaScript, not HTML
 			inputArray = inputAll.split('\u221A');
 			result = Math.sqrt(+inputArray[1]);
-		} else if (/\^2/.test(inputAll) === true) {
-			inputArray = inputAll.split('^2');
+		} else if (/\u2036/.test(inputAll) === true) {
+			inputArray = inputAll.split('\u2036');
 			result = +inputArray[0] * +inputArray[0];
 		} else if (/m/.test(inputAll) === true) {
 			inputArray = inputAll.split('m');
