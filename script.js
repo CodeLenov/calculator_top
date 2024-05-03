@@ -30,7 +30,7 @@ function clearInput() {
 	});
 }
 
-document.addEventListener('keypress', (b) => {
+document.addEventListener('keydown', (b) => {
 	if (b.key == '0') {b.value = '0'; getKeyInput();}
 	else if (b.key == '1') {b.value = '1'; getKeyInput();}
 	else if (b.key == '2') {b.value = '2'; getKeyInput();}
@@ -64,9 +64,6 @@ document.addEventListener('keypress', (b) => {
 	divOutput.innerHTML = inputAll.slice(-16); // restrict maximal length divOutput
 }
 });
-
-
-	
 
 
 	buttons.forEach(function(b) {
