@@ -122,7 +122,7 @@ function calculateResult() {
 	divOutput.style.color = `#222`; // change color for result
 	
 	// check the length of the data for divOutput
-	if ( (inputArray[0].length <= 16) && (inputArray[1].length <= 16) ) {
+	if ( (inputArray[0].length < 16) && (inputArray[1].length < 16) && (result.length < 16) {
 		divOutput.innerHTML = result;
 		inputAll = ""; // clean for new input
 	} else {
