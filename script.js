@@ -80,7 +80,7 @@ function calculateResult() {
 
 	if (/\%/.test(inputAll) === true) {
 		const percentAll = inputAll.slice(0, -2); // for remove equals sign and percent sign) from input string
-		const percentArray = percentAll.split(/[^0-9]/);	
+		const percentArray = percentAll.split(/[^0-9.]/);	
 		const percent = +percentArray[0] * (+percentArray[1] / 100);
 		// need change 'inputArray[1]' on 'percent' for next calculating, because 'replace' work only with first value			
 		const lastIndex = inputAll.lastIndexOf(`${percentArray[1]}`); 
@@ -122,7 +122,7 @@ function calculateResult() {
 	divOutput.style.color = `#222`; // change color for result
 	
 	// check the length of the data for divOutput
-	if ( (inputArray[0].length < 16) && (inputArray[1].length < 16) ) {
+	if ( (inputArray[0].length <= 16) && (inputArray[1].length <= 16) ) {
 		divOutput.innerHTML = result;
 		inputAll = ""; // clean for new input
 	} else {
