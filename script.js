@@ -86,16 +86,23 @@ function calculateResult() {
 		inputAll = inputAll.replace(`\u03C4`, `${Math.PI * 2}`); // 'tau' button
 
 		if (/\%/.test(inputAll) === true) {
+			console.log(20, inputAll);
 			const percentAll = inputAll.slice(0, -2); // for remove equals sign and percent sign) from input string	
+			console.log(30, percentAll);
 			const percentArray = percentAll.split(/[^0-9]/);
+			console.log(40, percentArray);
 			const percent = +percentArray[0] * (+percentArray[1] / 100);			
+			console.log(50, percent);
 			const lastIndex = inputAll.lastIndexOf(`${percentArray[1]}`);
+			console.log(60, lastIndex);
 			inputAll = inputAll.slice(0, lastIndex) + percent + inputAll.slice(lastIndex + 1);
+			console.log(70, inputAll);
 			inputAll = inputAll.slice(0, -1); // for remove equals sign from input string
+		console.log(80, inputAll);
 		}
 
 	inputAll = inputAll.slice(0, -1); // for remove equals sign (or percent sign if it is last character) from input string
-console.log(60, inputAll);
+console.log(90, inputAll);
 		// use regex for recognize operators
 		// split array with the operators for get first input number and second input number
 		// and change string type (elements of array) on integer type for calculating
@@ -124,9 +131,10 @@ console.log(60, inputAll);
 			inputArray = inputAll.split('^');
 			result = Math.pow(+inputArray[0], +inputArray[1]);
 		}
+		console.log(95, inputArray);
 console.log(000, result);
 		divOutput.style.color = `#222`; // change color for result
-		if ( (inputArray[0] < 16) || (inputArray[1] < 16) ) {
+		if ( (inputArray[0].length < 16) && (inputArray[1].length < 16) ) {
 		divOutput.innerHTML = result;
 	} else {
 		divOutput.innerHTML = 'so much long...>16'
