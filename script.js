@@ -47,6 +47,8 @@ function getInput() {
 			divOutput.innerHTML = inputAll.slice(-16); // restrict maximal length divOutput
 		}
 
+/*if ( (/[^0-9.]/.test(inputAll) === true) && (b.value === /[^0-9.])*/
+
 	});
 
 	undo.addEventListener('click', () => {
@@ -74,31 +76,23 @@ function getInput() {
 }
 
 function calculateResult() {
-inputAll = inputAll.slice(0, -1); // for remove equals sign (or percent sign if it is last character) from input string
-console.log(90, inputAll);
-	inputAll = inputAll.replace(`\u03C0`, `${Math.PI}`); // 'pi' button
-	inputAll = inputAll.replace(`\u03C4`, `${Math.PI * 2}`); // 'tau' button
+
+	inputAll = inputAll.slice(0, -1); // for remove equals sign from input string
+
+	inputAll = inputAll.replace(`\u03C0`, `3.14`); // 'pi' button
+	inputAll = inputAll.replace(`\u03C4`, `3.14 * 2`); // 'tau' button
 
 	if (/\%/.test(inputAll) === true) {
-	console.log(10, inputAll);
 		const percentAll = inputAll.slice(0, -1); // for remove equals sign and percent sign) from input string
-	console.log(20, percentAll);
 		const percentArray = percentAll.split(/[^0-9.]/);	
-	console.log(30, percentArray);
 		let percent = +percentArray[0] * (+percentArray[1] / 100);
-	console.log(40, percent);
 		// need round long decimals for the next check the length of the data for divOutput
 		percent = Math.round((percent + Number.EPSILON) * 100) / 100;
-	console.log(50, percent)
 		// need change 'inputArray[1]' on 'percent' for next calculating, because 'replace' work only with first value			
 		const lastIndex = inputAll.lastIndexOf(`${percentArray[1]}`); 
-	console.log(60, lastIndex);
-		inputAll = inputAll.slice(0, lastIndex) + percent /*+ inputAll.slice(lastIndex + 1)*/;
-	console.log(70, inputAll);
-		/*inputAll = inputAll.slice(0, -1); // for remove equals sign from input string
-	*/}
-console.log(80, inputAll);
-	
+		inputAll = inputAll.slice(0, lastIndex) + percent;
+	}
+
 	// use regex for recognize operators
 	// split array with the operators for get first input number and second input number
 	// and change string type (elements of array) on integer type for calculating
@@ -146,4 +140,3 @@ console.log(80, inputAll);
 	}
 
 }
-
