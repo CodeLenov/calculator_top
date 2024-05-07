@@ -36,7 +36,7 @@ function getInput() {
 		else if (b.key == 's') {b.value = '\u2036'; getKeyInput();}
 		else if (b.key == 'm') {b.value = 'm'; getKeyInput();}
 		else if (b.key == 'e') {b.value = '^'; getKeyInput();}
-		else if (b.key == 'Backspace') {b.value = ''; inputAll = inputAll.slice(0, -1); getKeyInput();}
+		else if (b.key == 'Backspace') {b.value = ''; makeUndo();}
 		else if (b.key == 'Delete') {b.value = ''; inputAll = ""; getKeyInput();}
 		else if (b.key == 'Enter') {b.value = '='; inputAll += b.value; calculateResult();}
 		else {b.value = ''}
