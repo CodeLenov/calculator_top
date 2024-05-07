@@ -5,20 +5,18 @@ const undo = document.querySelector("#undo");
 const clear = document.querySelector("#clear");
 const equals = document.querySelector("#equals");
 
-let inputAll = ''; // all inputs (e.g. numbers and operators) are the string
-let inputArray = []; // for 'inputAll' array
-let result = 0;
-let operator = '+';
-
+let result = 0; // FIRST operation: '0 + ...' is equal 0 and doesn't change next calculate
+let operator = '+'; // FIRST operation: '0 + ...' is equal 0 and doesn't change next calculate
 let inputNumber = '';
 
 getInput(); // initialize the program
 
-// do 'point', 'percent' and others
-//do buttons, e.g. '=', 'undo', 'clear', 'point', 'percent' and others
+
+//do buttons, e.g. '=', 'undo', 'clear', 'point', 'percent', pi, tau, x^2, x^e, sqrt, mod
 //    do document.addEventListener('keyup') for equals and operators (because normal innerHTML for operators)
-// <=16 digit input and output
+// <=16 digit input and output (round)
 // clean unuse let and const
+// add buttons M+ and Mclean
 
 function getInput() {
 
@@ -34,17 +32,17 @@ function getInput() {
 		else if (b.key == '7') {b.value = '7'; getKeyInput();}
 		else if (b.key == '8') {b.value = '8'; getKeyInput();}
 		else if (b.key == '9') {b.value = '9'; getKeyInput();}
-		else if (b.key == '%') {b.value = '%'; getKeyInput();}
+		else if (b.key == '%') {b.value = '%'; getKeyInput(); calculateProcent();}
 		else if (b.key == '+') {b.value = '+'; calculateResult(); operator = b.value;}
 		else if (b.key == '-') {b.value = '-'; calculateResult(); operator = b.value;}
 		else if (b.key == '*') {b.value = '*'; calculateResult(); operator = b.value;}
 		else if (b.key == '/') {b.value = '/'; calculateResult(); operator = b.value;}
-		else if (b.key == 'p') {b.value = '\u03C0'; getKeyInput();}
-		else if (b.key == 't') {b.value = '\u03C4'; getKeyInput();}
-		else if (b.key == 'r') {b.value = '\u221A'; getKeyInput();}
-		else if (b.key == 's') {b.value = '\u2036'; getKeyInput();}
-		else if (b.key == 'm') {b.value = 'm'; getKeyInput();}
-		else if (b.key == 'e') {b.value = '^'; getKeyInput();}
+		else if (b.key == 'p') {b.value = '\u03C0'; getKeyInput(); inputNumber = inputNumber.replace(`\u03C0`, '3.1416');}
+		else if (b.key == 't') {b.value = '\u03C4'; getKeyInput(); inputNumber = inputNumber.replace(`\u03C4`, `6.2832`);}
+		else if (b.key == 'r') {b.value = '\u221A'; getKeyInput(); calculateRoot();}
+		else if (b.key == 's') {b.value = 's'; getKeyInput(); calculateSquare();}
+		else if (b.key == 'm') {b.value = 'm'; calculateResult(); operator = b.value;}
+		else if (b.key == '^') {b.value = '^'; calculateResult(); operator = b.value;}
 		else if (b.key == 'Backspace') {b.value = ''; inputNumber = inputNumber.slice(0, -1); getKeyInput();}
 		else if (b.key == 'Delete') {b.value = ''; inputNumber = ''; operator = '+'; result = 0; getKeyInput()}
 		else if (b.key == 'Enter') {b.value = '='; calculateResult();}
@@ -82,6 +80,31 @@ function getInput() {
 
 }
 
+function calculateProcent() {
+	inputNumber = inputNumber.slice(0, -1); // remove percent sign
+	inputNumber = (+result / 100) * +inputNumber; // calculate procent;
+	inputNumber = Math.round((inputNumber + Number.EPSILON) * 100) / 100; // round long decimals
+	divOutput.innerHTML = inputNumber;
+}
+
+function calculateSquare() {
+	inputNumber = inputNumber.slice(0, -1); // remove round sign
+	inputNumber = +inputNumber * +inputNumber;
+	divOutput.innerHTML = inputNumber;
+}
+
+function calculateRoot() {
+	inputNumber = inputNumber.slice(0, -1); // remove round sign
+	inputNumber = Math.sqrt(+inputNumber);
+	divOutput.innerHTML = inputNumber;
+}
+
+function calculateModulo() {
+	inputNumber = inputNumber.slice(0, -1); // remove round sign
+	inputNumber = +result % +inputNumber;
+	divOutput.innerHTML = inputNumber;
+}
+
 function calculateResult() {
 
 	if (operator === '+') {
@@ -90,8 +113,15 @@ function calculateResult() {
 		result = +result - +inputNumber;
 	} else if (operator === '*') {
 		result = +result * +inputNumber;
-	} else {
+	} else if (operator === '/') {
 		result = +result / +inputNumber;
+	} else if (operator === '^') {
+		result = Math.pow(+result, +inputNumber);
+	} else if (operator === 'm') {
+		result = +result % +inputNumber;
+		console.log(30, result);
+		console.log(40, inputNumber);
+		console.log(50, operator);
 	}
 		
 	divOutput.style.color = `#222`;
@@ -99,6 +129,13 @@ function calculateResult() {
 
 	inputNumber = '';
 
+	if (operator === '^') {
+		operator = '+';
+	}
+
+	if (operator === 'm') {
+		operator = '+'; 
+	}
 }
 
 /*
