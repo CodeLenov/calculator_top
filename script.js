@@ -1,6 +1,7 @@
 // !!! 1. Declarate variables and Initialize the program !!!
-// !!! 2. Get input from keyboard and HTML buttons !!!
-// !!! 3. Calculate and Output !!!
+// !!! 2. Get Input from keyboard and HTML buttons !!!
+// !!! 3. Calculate !!!
+// !!! 4. Output !!!
 
 // ----------------------------------------------------------------------
 // !!! 1. Declarate variables and Initialize the program !!!
@@ -37,7 +38,7 @@ getInput(); // initialize the program
 // add buttons M+ and Mclean
 
 // ----------------------------------------------------------------------
-// !!! 2. Get input from keyboard and HTML buttons !!!
+// !!! 2. Get Input from keyboard and HTML buttons !!!
 
 function getInput() {
 
@@ -64,16 +65,13 @@ function getInput() {
 		else if (b.key == 'm') {calculateResult(); operator = 'm';}
 		else if (b.key == 'p') {calculatePi();}
 		else if (b.key == 't') {calculateTau();}		
-		else if (b.key == 'Backspace') { makeUndo();}
+		else if (b.key == 'Backspace') {makeUndo();}
 		else if (b.key == 'Delete') {makeClear();}
-		else if (b.key == 'Enter') {calculateResult();}
+		else if (b.key == 'Enter') {calculateResult(); operator = '+', inputNumber = '';}
 	});
 
 	digits.forEach(function(b) {
-		b.addEventListener('click', () => {
-			inputNumber += b.value;
-			outputInputNumber();
-		});
+		b.addEventListener('click', () => {inputNumber += b.value; outputInputNumber();});
 	});
 
 	add.addEventListener('click', () => {calculateResult(); operator = '+';});
@@ -91,51 +89,40 @@ function getInput() {
 
 	undo.addEventListener('click', makeUndo);
 	clear.addEventListener('click', makeClear);
-	equals.addEventListener('click', calculateResult);	
+	equals.addEventListener('click', () => {calculateResult(); operator = '+', inputNumber = '';});
 
 }
 
 // ----------------------------------------------------------------------
-// !!! 3. Calculate and Output !!!
-
-function outputInputNumber() {
-	inputNumber = inputNumber.slice(0, 16); // restrict maximal length input
-	divOutput.style.color = `#555`; // change color for input digits
-	divOutput.innerHTML = inputNumber;
-}
+// !!! 3. Calculate !!!
 
 function calculatePercent() {
-	divOutput.style.color = `#555`; // change color for input
 	divOutput.innerHTML = inputNumber.slice(-16); // restrict maximal length divOutput
 	inputNumber = (+result / 100) * +inputNumber; // calculate procent;
 	inputNumber = Math.round((+inputNumber + Number.EPSILON) * 10000) / 10000; // round long decimals
-	divOutput.innerHTML = inputNumber;
+	outputCalculateNumber();
 }
 
 function calculateSquare() {
-	divOutput.style.color = `#555`; // change color for input
 	divOutput.innerHTML = inputNumber.slice(-16); // restrict maximal length divOutput
 	inputNumber = +inputNumber * +inputNumber;
-	divOutput.innerHTML = inputNumber;
+	outputCalculateNumber();
 }
 
 function calculateRadical() {
-	divOutput.style.color = `#555`; // change color for input
 	inputNumber = Math.sqrt(+inputNumber);
 	inputNumber = Math.round((+inputNumber + Number.EPSILON) * 10000) / 10000; // round long decimals
-	divOutput.innerHTML = inputNumber;
+	outputCalculateNumber();
 }
 
 function calculatePi() {
 	inputNumber = 3.1416;
-	divOutput.style.color = `#555`; // change color for 
-	divOutput.innerHTML = inputNumber;
+	outputCalculateNumber();
 }
 
 function calculateTau() {
 	inputNumber = 6.2832;
-	divOutput.style.color = `#555`; // change color for
-	divOutput.innerHTML = inputNumber;	
+	outputCalculateNumber();
 }
 
 function makeUndo() {
@@ -167,11 +154,31 @@ function calculateResult() {
 	} else if (operator === '^') {
 		inputNumber = Math.pow(+result, +inputNumber);
 		outputCalculateNumber();
+		result = 0;
+		operator = '+';
 	} else if (operator === 'm') {
 		inputNumber = +result % +inputNumber;
 		outputCalculateNumber();
+		result = 0;
+		operator = '+';
 	}
 
+}
+
+// ----------------------------------------------------------------------
+// !!! 4. Output !!!
+
+function limitOutputNumber() {
+	inputNumber = '' + inputNumber;
+	if (inputNumber.length > 12) {
+		inputNumber = inputNumber.toExponential(12);
+	}
+}
+
+function outputInputNumber() {
+	inputNumber = inputNumber.slice(0, 16); // restrict maximal length input
+	divOutput.style.color = `#555`; // change color for input digits
+	divOutput.innerHTML = inputNumber;
 }
 
 function outputResult() {
@@ -183,10 +190,7 @@ function outputResult() {
 }
 
 function outputCalculateNumber() {
-	inputNumber = '' + inputNumber;
-	inputNumber = inputNumber.slice(0, 16); // restrict maximal length input
+	limitOutputNumber();
 	divOutput.style.color = `#222`;
 	divOutput.innerHTML = inputNumber;
-	result = 0;
-	operator = '+';
 }
