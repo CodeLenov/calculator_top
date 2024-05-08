@@ -1,8 +1,17 @@
+/* !!! 1. Container !!! */
+/* !!! 2. divButtons !!! */
+/* !!! 3. Operator buttons !!! */
+/* !!! 4. UpRow !!! */
+/* !!! 5. divOutput !!! */
+
+/* ---------------------------------------------------------------------- */
+/* !!! 1. Container !!! */
+
 * {
 	font-family: Arial, sans-serif;
 	box-sizing: border-box;
 	text-align: center;
-	justify-content: right;
+	justify-content: space-between;
 }
 
 #container {
@@ -14,16 +23,8 @@
 	transform: translateY(50%); /* center vertically */
 }
 
-#divOutput {
-	color: #555;
-	padding: 0 1vmin;
-	font-size: 6vmin; /* vmin - for the different screens */
-	line-height: 10vmin; /* vmin - for the different screens */
-	text-align: right;
-	height: 12vmin; /* vmin - for the different screens */
-	border: 1.5vmin solid #ddd; /* vmin - for the different screens */
-	border-radius: 2%;
-}
+/* ---------------------------------------------------------------------- */
+/* !!! 2. divButtons !!! */
 
 #divButtons {
 	border: 1.5vmin solid #ddd; /* vmin - for the different screens */
@@ -49,17 +50,44 @@
 	box-shadow: 3px 2px 22px 1px #aaa inset;
 }
 
+/* ---------------------------------------------------------------------- */
+/* !!! 3. Operator buttons !!! */
+
 .operators {
 	background-color: #333;
 	color: #fff;
 }
 
-.operatorsToo {
+.operatorsAlso {
 	background-color: #ccc;
 }
 
-.keys {
+.keyboard {
 	color: #777;
+}
+
+#equals {
+	background-color: #369;
+	color: #fff;
+	width: calc(100% / 3);
+}
+
+/* ---------------------------------------------------------------------- */
+/* !!! 4. UpRow !!! */
+
+.divUpRow {
+	width: calc(100% / 3);
+	display: flex;
+	flex-flow: row wrap;
+}
+
+.memory, .undoClear {
+	flex: 1 1 0;
+}
+
+.memory {
+	background-color: #bbb;
+	color: #369;
 }
 
 #undo {
@@ -71,8 +99,16 @@
 	color: #fff;
 }
 
-#equals {
-	background-color: #369;
-	color: #fff;
-	width: calc(100% / 3);
+/* ---------------------------------------------------------------------- */
+/* !!! 5. divOutput !!! */
+
+#divOutput {
+	color: #555;
+	padding: 0 1vmin;
+	font-size: 6vmin; /* vmin - for the different screens */
+	line-height: 10vmin; /* vmin - for the different screens */
+	text-align: right;
+	height: 12vmin; /* vmin - for the different screens */
+	border: 1.5vmin solid #ddd; /* vmin - for the different screens */
+	border-radius: 2%;
 }

@@ -1,7 +1,8 @@
 // !!! 1. Declarate variables and Initialize the program !!!
 // !!! 2. Get Input from keyboard and HTML buttons !!!
 // !!! 3. Calculate !!!
-// !!! 4. Output !!!
+// !!! 4. Limit output !!!
+// !!! 5. Output !!!
 
 // ----------------------------------------------------------------------
 // !!! 1. Declarate variables and Initialize the program !!!
@@ -34,8 +35,8 @@ let inputNumber = '';
 getInput(); // initialize the program
 
 //    do document.addEventListener('keyup') for equals and operators (because normal innerHTML for operators)
-// <=16 digit input and output (round)
 // add buttons M+ and Mclean
+//maybe clear value in HTML
 
 // ----------------------------------------------------------------------
 // !!! 2. Get Input from keyboard and HTML buttons !!!
@@ -43,17 +44,17 @@ getInput(); // initialize the program
 function getInput() {
 
 	document.addEventListener('keydown', (b) => {
-		if (b.key == '.') {inputNumber += b.key; outputInputNumber();}
-		else if (b.key == '0') {inputNumber += b.key; outputInputNumber();}
-		else if (b.key == '1') {inputNumber += b.key; outputInputNumber();}
-		else if (b.key == '2') {inputNumber += b.key; outputInputNumber();}
-		else if (b.key == '3') {inputNumber += b.key; outputInputNumber();}
-		else if (b.key == '4') {inputNumber += b.key; outputInputNumber();}
-		else if (b.key == '5') {inputNumber += b.key; outputInputNumber();}
-		else if (b.key == '6') {inputNumber += b.key; outputInputNumber();}
-		else if (b.key == '7') {inputNumber += b.key; outputInputNumber();}
-		else if (b.key == '8') {inputNumber += b.key; outputInputNumber();}
-		else if (b.key == '9') {inputNumber += b.key; outputInputNumber();}
+		if (b.key == '.') {inputNumber += b.key; outputInput();}
+		else if (b.key == '0') {inputNumber += b.key; outputInput();}
+		else if (b.key == '1') {inputNumber += b.key; outputInput();}
+		else if (b.key == '2') {inputNumber += b.key; outputInput();}
+		else if (b.key == '3') {inputNumber += b.key; outputInput();}
+		else if (b.key == '4') {inputNumber += b.key; outputInput();}
+		else if (b.key == '5') {inputNumber += b.key; outputInput();}
+		else if (b.key == '6') {inputNumber += b.key; outputInput();}
+		else if (b.key == '7') {inputNumber += b.key; outputInput();}
+		else if (b.key == '8') {inputNumber += b.key; outputInput();}
+		else if (b.key == '9') {inputNumber += b.key; outputInput();}
 		else if (b.key == '+') {calculateResult(); operator = '+';}
 		else if (b.key == '-') {calculateResult(); operator = '-';}
 		else if (b.key == '*') {calculateResult(); operator = '*';}
@@ -71,7 +72,7 @@ function getInput() {
 	});
 
 	digits.forEach(function(b) {
-		b.addEventListener('click', () => {inputNumber += b.value; outputInputNumber();});
+		b.addEventListener('click', () => {inputNumber += b.value; outputInput();});
 	});
 
 	add.addEventListener('click', () => {calculateResult(); operator = '+';});
@@ -95,34 +96,31 @@ function getInput() {
 
 // ----------------------------------------------------------------------
 // !!! 3. Calculate !!!
+// calculate is simple but it is in function format - because use both keyboard an HTML button
 
 function calculatePercent() {
-	divOutput.innerHTML = inputNumber.slice(-16); // restrict maximal length divOutput
-	inputNumber = (+result / 100) * +inputNumber; // calculate procent;
-	inputNumber = Math.round((+inputNumber + Number.EPSILON) * 10000) / 10000; // round long decimals
-	outputCalculateNumber();
+	inputNumber = (+result / 100) * +inputNumber;
+	outputNumber();
 }
 
 function calculateSquare() {
-	divOutput.innerHTML = inputNumber.slice(-16); // restrict maximal length divOutput
 	inputNumber = +inputNumber * +inputNumber;
-	outputCalculateNumber();
+	outputNumber();
 }
 
 function calculateRadical() {
 	inputNumber = Math.sqrt(+inputNumber);
-	inputNumber = Math.round((+inputNumber + Number.EPSILON) * 10000) / 10000; // round long decimals
-	outputCalculateNumber();
+	outputNumber();
 }
 
 function calculatePi() {
-	inputNumber = 3.1416;
-	outputCalculateNumber();
+	inputNumber = 3.14159265358979;
+	outputNumber();
 }
 
 function calculateTau() {
-	inputNumber = 6.2832;
-	outputCalculateNumber();
+	inputNumber = 6.28318530717958;
+	outputNumber();
 }
 
 function makeUndo() {
@@ -153,12 +151,12 @@ function calculateResult() {
 		outputResult();
 	} else if (operator === '^') {
 		inputNumber = Math.pow(+result, +inputNumber);
-		outputCalculateNumber();
+		outputNumber();
 		result = 0;
 		operator = '+';
 	} else if (operator === 'm') {
 		inputNumber = +result % +inputNumber;
-		outputCalculateNumber();
+		outputNumber();
 		result = 0;
 		operator = '+';
 	}
@@ -166,31 +164,46 @@ function calculateResult() {
 }
 
 // ----------------------------------------------------------------------
-// !!! 4. Output !!!
+// !!! 4. Limit output !!!
 
-function limitOutputNumber() {
-	inputNumber = '' + inputNumber;
-	if (inputNumber.length > 12) {
-		inputNumber = inputNumber.toExponential(12);
+function limitNumber() {
+	// 16 digits if positive value and 15 digits if negative value - because one place for '-'
+	if ( (inputNumber > 9999999999999999) || (inputNumber < -999999999999999) ) {
+		inputNumber = inputNumber.toExponential(10); // compare value - so doesn't need change type
+	} else {
+		inputNumber = '' + inputNumber; // compare length - so need change integer (float) type to string type
+		if (inputNumber.length > 15) {inputNumber = inputNumber.substring(0, 16);}
 	}
 }
 
-function outputInputNumber() {
+function limitResult() {
+	// 16 digits if positive value and 15 digits if negative value - because one place for '-'
+	if ( (result > 9999999999999999) || (result < -999999999999999) ) {
+		result = result.toExponential(10); // compare value - so doesn't need change type
+	} else {
+		result = '' + result; // compare length - so need change integer (float) type to string type
+		if (result.length > 15) {result = result.substring(0, 16);}
+	}
+}
+
+// ----------------------------------------------------------------------
+// !!! 5. Output !!!
+
+function outputInput() {
 	inputNumber = inputNumber.slice(0, 16); // restrict maximal length input
 	divOutput.style.color = `#555`; // change color for input digits
 	divOutput.innerHTML = inputNumber;
 }
 
 function outputResult() {
-	result = '' + result;
-	result = result.slice(0, 16); // restrict maximal length output
+	limitResult();
 	divOutput.style.color = `#222`;
 	divOutput.innerHTML = result;
 	inputNumber = ''; // for new input
 }
 
-function outputCalculateNumber() {
-	limitOutputNumber();
+function outputNumber() {
+	limitNumber();
 	divOutput.style.color = `#222`;
 	divOutput.innerHTML = inputNumber;
 }

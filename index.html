@@ -17,8 +17,14 @@
 <div id="divButtons">
 
 	<div class="divRows">
-		<button id="undo" class="buttons" type="button" value="undo">Undo</button>
-		<button id="clear" class="buttons" type="button" value="clear">Clear</button>
+	<div class="divUpRow">
+		<button id="memoryInput" class="memory buttons" type="button" value="mi">M&#x21E7</button>
+		<button id="memoryOutput" class="memory buttons" type="button" value="mu">M&#x21E9</button>
+	</div>
+	<div class="divUpRow">
+		<button id="undo" class="undoClear buttons" type="button" value="undo">Undo</button>
+		<button id="clear" class="undoClear buttons" type="button" value="clear">Clear</button>
+	</div>
 	</div>
 
 	<div class="divRows">
@@ -26,8 +32,8 @@
 		<button class="digits buttons" type="button" value="8">8</button>
 		<button class="digits buttons" type="button" value="9">9</button>
 		<button id="divide" class="operators buttons" type="button" value="/">/</button>
-		<button id="pi" class="buttons" type="button" value="&#x03C0">&#x03C0 <span class="keys">p</span></button> <!-- unicode for HTML, not JavaScript -->
-		<button id="tau" class="buttons" type="button" value="&#x03C4">&#x03C4 <span class="keys">t</span></button> <!-- unicode for HTML, not JavaScript -->
+		<button id="pi" class="buttons" type="button" value="&#x03C0">&#x03C0 <span class="keyboard">p</span></button> <!-- unicode for HTML, not JavaScript -->
+		<button id="tau" class="buttons" type="button" value="&#x03C4">&#x03C4 <span class="keyboard">t</span></button> <!-- unicode for HTML, not JavaScript -->
 	</div>
 
 	<div class="divRows">
@@ -35,8 +41,8 @@
 		<button class="digits buttons" type="button" value="5">5</button>
 		<button class="digits buttons" type="button" value="6">6</button>
 		<button id="multiply" class="operators buttons" type="button" value="*">*</button>
-		<button id="exponent" class="operatorsToo buttons" type="button" value="^">x<sup>y</sup> <span class="keys">^</span></button>
-		<button id="modulo" class="operatorsToo buttons" type="button" value="m">mod</button>
+		<button id="exponent" class="operatorsAlso buttons" type="button" value="^">x<sup>y</sup> <span class="keyboard">^</span></button>
+		<button id="modulo" class="operatorsAlso buttons" type="button" value="m">mod</button>
 	</div>
 
 	<div class="divRows">
@@ -44,8 +50,8 @@
 		<button class="digits buttons" type="button" value="2">2</button>
 		<button class="digits buttons" type="button" value="3">3</button>
 		<button id="subtract" class="operators buttons" type="button" value="-">-</button>
-		<button id="square" class="buttons" type="button" value="s">x<sup>2</sup> <span class="keys">s</span></button>
-		<button id="radical" class="buttons" type="button" value="&#x221A">&#x221A <span class="keys">r</span></button> <!-- unicode for HTML, not JavaScript -->
+		<button id="square" class="buttons" type="button" value="s">x<sup>2</sup> <span class="keyboard">s</span></button>
+		<button id="radical" class="buttons" type="button" value="&#x221A">&#x221A <span class="keyboard">r</span></button> <!-- unicode for HTML, not JavaScript -->
 	</div>
 
 	<div class="divRows">
