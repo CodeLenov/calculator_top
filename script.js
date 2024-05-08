@@ -26,15 +26,14 @@ const undo = document.querySelector("#undo");
 const clear = document.querySelector("#clear");
 const equals = document.querySelector("#equals");
 
-let result = 0; // FIRST operation: '0 + ...' is equal 0 and doesn't change next calculate
-let operator = '+'; // FIRST operation: '0 + ...' is equal 0 and doesn't change next calculate
+let result = 0; // operation: '0 + ...' is equal 0 and doesn't change next calculate. But it need for normal FIRST calculate
+let operator = '+'; // operation: '0 + ...' is equal 0 and doesn't change next calculate. But it need for normal FIRST calculate
 let inputNumber = '';
 
 getInput(); // initialize the program
 
 //    do document.addEventListener('keyup') for equals and operators (because normal innerHTML for operators)
 // <=16 digit input and output (round)
-
 // add buttons M+ and Mclean
 
 // ----------------------------------------------------------------------
@@ -43,42 +42,35 @@ getInput(); // initialize the program
 function getInput() {
 
 	document.addEventListener('keydown', (b) => {
-		if (b.key == '.') {b.value = '.'; getKeyInput();}
-		else if (b.key == '0') {b.value = '0'; getKeyInput();}
-		else if (b.key == '1') {b.value = '1'; getKeyInput();}
-		else if (b.key == '2') {b.value = '2'; getKeyInput();}
-		else if (b.key == '3') {b.value = '3'; getKeyInput();}
-		else if (b.key == '4') {b.value = '4'; getKeyInput();}
-		else if (b.key == '5') {b.value = '5'; getKeyInput();}
-		else if (b.key == '6') {b.value = '6'; getKeyInput();}
-		else if (b.key == '7') {b.value = '7'; getKeyInput();}
-		else if (b.key == '8') {b.value = '8'; getKeyInput();}
-		else if (b.key == '9') {b.value = '9'; getKeyInput();}
-		else if (b.key == '+') {b.value = '+'; calculateResult(); operator = '+';}
-		else if (b.key == '-') {b.value = '-'; calculateResult(); operator = '-';}
-		else if (b.key == '*') {b.value = '*'; calculateResult(); operator = '*';}
-		else if (b.key == '/') {b.value = '/'; calculateResult(); operator = '/';}
-		else if (b.key == '%') {b.value = '%'; calculatePercent();}
-		else if (b.key == 's') {b.value = 's'; calculateSquare();}
-		else if (b.key == 'r') {b.value = '\u221A'; calculateRadical();}
-		else if (b.key == '^') {b.value = '^'; calculateResult(); operator = '^';}
-		else if (b.key == 'm') {b.value = 'm'; calculateResult(); operator = 'm';}
-		else if (b.key == 'p') {b.value = '\u03C0'; calculatePi();}
-		else if (b.key == 't') {b.value = '\u03C4'; calculateTau();}		
-		else if (b.key == 'Backspace') {b.value = ''; makeUndo();}
-		else if (b.key == 'Delete') {b.value = ''; makeClear();}
-		else if (b.key == 'Enter') {b.value = '='; calculateResult();}
-		else {b.value = ''}
-
-		function getKeyInput() { // inner function in document.addEventListener
-			inputNumber += b.value;
-			outputInputNumber();
-		}
-
+		if (b.key == '.') {inputNumber += b.key; outputInputNumber();}
+		else if (b.key == '0') {inputNumber += b.key; outputInputNumber();}
+		else if (b.key == '1') {inputNumber += b.key; outputInputNumber();}
+		else if (b.key == '2') {inputNumber += b.key; outputInputNumber();}
+		else if (b.key == '3') {inputNumber += b.key; outputInputNumber();}
+		else if (b.key == '4') {inputNumber += b.key; outputInputNumber();}
+		else if (b.key == '5') {inputNumber += b.key; outputInputNumber();}
+		else if (b.key == '6') {inputNumber += b.key; outputInputNumber();}
+		else if (b.key == '7') {inputNumber += b.key; outputInputNumber();}
+		else if (b.key == '8') {inputNumber += b.key; outputInputNumber();}
+		else if (b.key == '9') {inputNumber += b.key; outputInputNumber();}
+		else if (b.key == '+') {calculateResult(); operator = '+';}
+		else if (b.key == '-') {calculateResult(); operator = '-';}
+		else if (b.key == '*') {calculateResult(); operator = '*';}
+		else if (b.key == '/') {calculateResult(); operator = '/';}
+		else if (b.key == '%') {calculatePercent();}
+		else if (b.key == 's') {calculateSquare();}
+		else if (b.key == 'r') {calculateRadical();}
+		else if (b.key == '^') {calculateResult(); operator = '^';}
+		else if (b.key == 'm') {calculateResult(); operator = 'm';}
+		else if (b.key == 'p') {calculatePi();}
+		else if (b.key == 't') {calculateTau();}		
+		else if (b.key == 'Backspace') { makeUndo();}
+		else if (b.key == 'Delete') {makeClear();}
+		else if (b.key == 'Enter') {calculateResult();}
 	});
 
 	digits.forEach(function(b) {
-		b.addEventListener('click', () => { // inner function in digits./forEach/addEventListener
+		b.addEventListener('click', () => {
 			inputNumber += b.value;
 			outputInputNumber();
 		});
