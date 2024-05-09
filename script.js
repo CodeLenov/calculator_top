@@ -24,6 +24,8 @@ const modulo = document.querySelector('#modulo');
 const pi = document.querySelector('#pi');
 const tau = document.querySelector('#tau');
 
+const memoryInput = document.querySelector('#memoryInput');
+const memoryOutput = document.querySelector('#memoryOutput');
 const undo = document.querySelector("#undo");
 const clear = document.querySelector("#clear");
 const equals = document.querySelector("#equals");
@@ -31,12 +33,14 @@ const equals = document.querySelector("#equals");
 let result = 0; // operation: '0 + ...' is equal 0 and doesn't change next calculate. But it need for normal FIRST calculate
 let operator = '+'; // operation: '0 + ...' is equal 0 and doesn't change next calculate. But it need for normal FIRST calculate
 let inputNumber = '';
+let memory = '';
 
 getInput(); // initialize the program
 
+// add functional buttons M+ and Mclean - for keyboard and HTML buttons
 //    do document.addEventListener('keyup') for equals and operators (because normal innerHTML for operators)
-// add buttons M+ and Mclean
 //maybe clear value in HTML
+// maybe add functional for second press (keyboard and button) equals
 
 // ----------------------------------------------------------------------
 // !!! 2. Get Input from keyboard and HTML buttons !!!
@@ -65,7 +69,9 @@ function getInput() {
 		else if (b.key == '^') {calculateResult(); operator = '^';}
 		else if (b.key == 'm') {calculateResult(); operator = 'm';}
 		else if (b.key == 'p') {calculatePi();}
-		else if (b.key == 't') {calculateTau();}		
+		else if (b.key == 't') {calculateTau();}
+		else if (b.key == 'ArrowUp') {makeMemoryInput();}
+		else if (b.key == 'ArrowDown') {makeMemoryOutput();}
 		else if (b.key == 'Backspace') {makeUndo();}
 		else if (b.key == 'Delete') {makeClear();}
 		else if (b.key == 'Enter') {calculateResult(); operator = '+', inputNumber = '';}
@@ -88,6 +94,8 @@ function getInput() {
 	pi.addEventListener('click', calculatePi);
 	tau.addEventListener('click', calculateTau);
 
+	memoryInput.addEventListener('click', makeMemoryInput);
+	memoryOutput.addEventListener('click', makeMemoryOutput);
 	undo.addEventListener('click', makeUndo);
 	clear.addEventListener('click', makeClear);
 	equals.addEventListener('click', () => {calculateResult(); operator = '+', inputNumber = '';});
@@ -120,6 +128,15 @@ function calculatePi() {
 
 function calculateTau() {
 	inputNumber = 6.28318530717958;
+	outputNumber();
+}
+
+function makeMemoryInput() {
+	memory = divOutput.innerHTML; // because we can store (input) 'inputNumber' OR 'result'
+}
+
+function makeMemoryOutput() {
+	inputNumber = memory;
 	outputNumber();
 }
 
