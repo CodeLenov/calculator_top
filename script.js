@@ -30,22 +30,19 @@ const undo = document.querySelector("#undo");
 const clear = document.querySelector("#clear");
 const equals = document.querySelector("#equals");
 
-let result = ''; // operation: '0 + ...' is equal 0 and doesn't change next calculate. But it need for normal FIRST calculate
-let operator = '+'; // operation: '0 + ...' is equal 0 and doesn't change next calculate. But it need for normal FIRST calculate
+let result = '';
+let operator = '+'; // because " '+' + '' " don't change 'inputNumber' in the FIRST calculate
 let inputNumber = '';
 let memory = '';
 
-
 getInput(); // initialize the program
-
-//maybe clear value in HTML
-// maybe add functional for second press (keyboard and button) equals
 
 // ----------------------------------------------------------------------
 // !!! 2. Get Input from keyboard and HTML buttons !!!
 
 function getInput() {
 
+	// operators aren't in the functions, because in the functions calculate results with PREVIOSLY operators
 	document.addEventListener('keydown', (b) => {
 		if (b.key == '.') {inputNumber += b.key; outputInput();}
 		else if (b.key == '0') {inputNumber += b.key; outputInput();}
@@ -66,20 +63,21 @@ function getInput() {
 		else if (b.key == 's') {calculateSquare();}
 		else if (b.key == 'r') {calculateRadical();}
 		else if (b.key == '^') {calculateResult(); operator = '^';}
-		else if (b.key == 'm') {calculateResult(); operator = 'm';}
+		else if (b.key == 'm') {calculateResult(); operator = 'm';} // 'm' sign - because '%' use as percent sign
 		else if (b.key == 'p') {calculatePi();}
 		else if (b.key == 't') {calculateTau();}
 		else if (b.key == 'ArrowUp') {makeMemoryInput();}
 		else if (b.key == 'ArrowDown') {makeMemoryOutput();}
 		else if (b.key == 'Backspace') {makeUndo();}
 		else if (b.key == 'Delete') {makeClear();}
-		else if (b.key == 'Enter') {calculateResult(); operator = '+';}
+		else if (b.key == 'Enter') {calculateResult(); operator = '+';} // because " '+' + '' " don't change 'inputNumber' in the next step
 	});
 
 	digits.forEach(function(b) {
 		b.addEventListener('click', () => {inputNumber += b.value; outputInput();});
 	});
 
+	// operators aren't in the functions, because in the functions calculate results with PREVIOSLY operators
 	add.addEventListener('click', () => {calculateResult(); operator = '+';});
 	subtract.addEventListener('click', () => {calculateResult(); operator = '-';});
 	multiply.addEventListener('click', () => {calculateResult(); operator = '*';});
@@ -89,7 +87,7 @@ function getInput() {
 	square.addEventListener('click', calculateSquare);
 	radical.addEventListener('click', calculateRadical);
 	exponent.addEventListener('click', () => {calculateResult(); operator = '^';});
-	modulo.addEventListener('click', () => {calculateResult(); operator = 'm';});
+	modulo.addEventListener('click', () => {calculateResult(); operator = 'm';}); // 'm' sign - because '%' use as percent sign
 	pi.addEventListener('click', calculatePi);
 	tau.addEventListener('click', calculateTau);
 
@@ -97,7 +95,7 @@ function getInput() {
 	memoryOutput.addEventListener('click', makeMemoryOutput);
 	undo.addEventListener('click', makeUndo);
 	clear.addEventListener('click', makeClear);
-	equals.addEventListener('click', () => {calculateResult(); operator = '+';});
+	equals.addEventListener('click', () => {calculateResult(); operator = '+';}); // because " '+' + '' " don't change 'inputNumber' in the next step
 
 }
 
@@ -168,14 +166,9 @@ function calculateResult() {
 	} else if (operator === '^') {
 		result = Math.pow(+result, +inputNumber);
 		outputResult();
-		//result = 0;
-		//operator = '+';
 	} else if (operator === 'm') {
 		result = +result % +inputNumber;
-		inputNumber = '';
 		outputResult();
-		//result = 0;
-		//operator = '+';
 	}
 
 }
@@ -214,13 +207,13 @@ function outputInput() {
 
 function outputResult() {
 	limitResult();
-	divOutput.style.color = `#222`;
+	divOutput.style.color = `#222`; // change color for calculate results
 	divOutput.innerHTML = result;
 	inputNumber = ''; // for new input
 }
 
 function outputNumber() {
 	limitNumber();
-	divOutput.style.color = `#222`;
+	divOutput.style.color = `#222`; // change color for calculate results (e.g. inputNumber)
 	divOutput.innerHTML = inputNumber;
 }
