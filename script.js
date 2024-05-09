@@ -30,15 +30,14 @@ const undo = document.querySelector("#undo");
 const clear = document.querySelector("#clear");
 const equals = document.querySelector("#equals");
 
-let result = 0; // operation: '0 + ...' is equal 0 and doesn't change next calculate. But it need for normal FIRST calculate
+let result = ''; // operation: '0 + ...' is equal 0 and doesn't change next calculate. But it need for normal FIRST calculate
 let operator = '+'; // operation: '0 + ...' is equal 0 and doesn't change next calculate. But it need for normal FIRST calculate
 let inputNumber = '';
 let memory = '';
 
+
 getInput(); // initialize the program
 
-// add functional buttons M+ and Mclean - for keyboard and HTML buttons
-//    do document.addEventListener('keyup') for equals and operators (because normal innerHTML for operators)
 //maybe clear value in HTML
 // maybe add functional for second press (keyboard and button) equals
 
@@ -74,7 +73,7 @@ function getInput() {
 		else if (b.key == 'ArrowDown') {makeMemoryOutput();}
 		else if (b.key == 'Backspace') {makeUndo();}
 		else if (b.key == 'Delete') {makeClear();}
-		else if (b.key == 'Enter') {calculateResult(); operator = '+', inputNumber = '';}
+		else if (b.key == 'Enter') {calculateResult(); operator = '+';}
 	});
 
 	digits.forEach(function(b) {
@@ -98,7 +97,7 @@ function getInput() {
 	memoryOutput.addEventListener('click', makeMemoryOutput);
 	undo.addEventListener('click', makeUndo);
 	clear.addEventListener('click', makeClear);
-	equals.addEventListener('click', () => {calculateResult(); operator = '+', inputNumber = '';});
+	equals.addEventListener('click', () => {calculateResult(); operator = '+';});
 
 }
 
@@ -167,15 +166,16 @@ function calculateResult() {
 		result = +result / +inputNumber;
 		outputResult();
 	} else if (operator === '^') {
-		inputNumber = Math.pow(+result, +inputNumber);
-		outputNumber();
-		result = 0;
-		operator = '+';
+		result = Math.pow(+result, +inputNumber);
+		outputResult();
+		//result = 0;
+		//operator = '+';
 	} else if (operator === 'm') {
-		inputNumber = +result % +inputNumber;
-		outputNumber();
-		result = 0;
-		operator = '+';
+		result = +result % +inputNumber;
+		inputNumber = '';
+		outputResult();
+		//result = 0;
+		//operator = '+';
 	}
 
 }
