@@ -7,9 +7,9 @@
 // ----------------------------------------------------------------------
 // !!! 1. Declarate variables and Initialize the program !!!
 
-const divOutput = document.querySelector("#divOutput");
+const divOutput = document.querySelector('#divOutput');
 
-const digits = document.querySelectorAll(".digits");
+const digits = document.querySelectorAll('.digits');
 
 const add = document.querySelector('#add');
 const subtract = document.querySelector('#subtract');
@@ -26,9 +26,9 @@ const tau = document.querySelector('#tau');
 
 const memoryInput = document.querySelector('#memoryInput');
 const memoryOutput = document.querySelector('#memoryOutput');
-const undo = document.querySelector("#undo");
-const clear = document.querySelector("#clear");
-const equals = document.querySelector("#equals");
+const undo = document.querySelector('#undo');
+const clear = document.querySelector('#clear');
+const equals = document.querySelector('#equals');
 
 let result = '';
 let operator = '+'; // because " '+' + '' " don't change 'inputNumber' in the FIRST calculate
