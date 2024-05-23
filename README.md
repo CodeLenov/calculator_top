@@ -1,5 +1,5 @@
 # calculator_top
-Calculator | JavaScript, CSS, HTML | Front End Foundations Course (JavaScript, CSS, HTML, Git) | 05/05 | The Odin Project | 2024
+Calculator | JavaScript, CSS, HTML | Front End Foundations (JavaScript, CSS, HTML, Git) | 05/05 | The Odin Project | 2024
 
 Warning
 
