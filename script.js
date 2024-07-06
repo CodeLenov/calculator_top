@@ -1,8 +1,8 @@
-// !!! 1. Declarate variables and Initialize the program !!!
-// !!! 2. Get Input from keyboard and HTML buttons !!!
-// !!! 3. Calculate !!!
-// !!! 4. Limit output !!!
-// !!! 5. Output !!!
+// 1. Declarate variables and Initialize the program
+// 2. Get Input from keyboard and HTML buttons
+// 3. Calculate
+// 4. Limit output
+// 5. Output
 
 // ----------------------------------------------------------------------
 // !!! 1. Declarate variables and Initialize the program !!!
